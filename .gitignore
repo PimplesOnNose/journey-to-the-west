@@ -1,6 +1,6 @@
 # Generated files
-images/
-audio/
+# images/
+# audio/
 
 # Python
 __pycache__/

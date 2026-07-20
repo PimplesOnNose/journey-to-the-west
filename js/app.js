@@ -78,10 +78,16 @@ class StoryApp {
         
         // Update pinyin (only for Chinese)
         if (this.currentLang === 'zh') {
-            document.getElementById('pinyinContainer').style.display = 'block';
-            document.getElementById('storyPinyin').textContent = page.title.pinyin;
+            // Show title pinyin
+            document.getElementById('titlePinyinContainer').style.display = 'block';
+            document.getElementById('storyTitlePinyin').textContent = page.title.pinyin;
+            
+            // Show content pinyin
+            document.getElementById('contentPinyinContainer').style.display = 'block';
+            document.getElementById('storyContentPinyin').textContent = page.content.pinyin;
         } else {
-            document.getElementById('pinyinContainer').style.display = 'none';
+            document.getElementById('titlePinyinContainer').style.display = 'none';
+            document.getElementById('contentPinyinContainer').style.display = 'none';
         }
         
         // Update text

@@ -307,6 +307,23 @@ body::before {
     font-family: 'Georgia', serif;
 }
 
+.content-pinyin-container {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: rgba(142, 69, 133, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid var(--plum-purple);
+}
+
+.content-pinyin {
+    font-size: 1.1rem;
+    color: var(--plum-purple);
+    font-style: italic;
+    font-family: 'Georgia', serif;
+    line-height: 1.8;
+    text-align: justify;
+}
+
 .story-text {
     font-size: 1.4rem;
     line-height: 1.8;
