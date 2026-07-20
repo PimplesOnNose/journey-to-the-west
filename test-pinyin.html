@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Pinyin Display</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .test { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        #result { white-space: pre-wrap; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>Pinyin Display Test</h1>
+    
+    <div class="test">
+        <h3>Test Result</h3>
+        <div id="result">Loading test...</div>
+    </div>
+    
+    <script>
+        // Test if the app.js is loaded correctly
+        fetch('js/app.js')
+            .then(response => response.text())
+            .then(text => {
+                const hasContentPinyin = text.includes('contentPinyinContainer') && text.includes('storyContentPinyin');
+                const resultDiv = document.getElementById('result');
+                
+                if (hasContentPinyin) {
+                    resultDiv.innerHTML = '✅ JavaScript updated correctly\n\n' +
+                        'Found references to:\n' +
+                        '- contentPinyinContainer\n' +
+                        '- storyContentPinyin\n\n' +
+                        'The pinyin for content should now display when Chinese is selected.';
+                    resultDiv.parentElement.className = 'test success';
+                } else {
+                    resultDiv.innerHTML = '❌ JavaScript not updated correctly\n\n' +
+                        'Missing references to content pinyin elements.';
+                    resultDiv.parentElement.className = 'test error';
+                }
+            })
+            .catch(error => {
+                document.getElementById('result').innerHTML = '❌ Error loading app.js: ' + error.message;
+                document.getElementById('result').parentElement.className = 'test error';
+            });
+    </script>
+</body>
+</html>
