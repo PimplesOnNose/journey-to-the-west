@@ -24,3 +24,10 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Development files
+test*.html
+start.sh
+DEPLOYMENT.md
+*.pyc
+__pycache__/
