@@ -1,0 +1,149 @@
+{
+  "title": {
+    "en": "Journey to the West",
+    "zh": "西游记",
+    "pinyin": "Xī Yóu Jì"
+  },
+  "pages": [
+    {
+      "id": 1,
+      "title": {
+        "en": "The Monkey King is Born",
+        "zh": "美猴王出世",
+        "pinyin": "Měi Hóu Wáng Chū Shì"
+      },
+      "content": {
+        "en": "Long ago, on the Mountain of Flowers and Fruit, a magical stone cracked open and out jumped a little monkey. This was no ordinary monkey — he could run, jump, and fly through the clouds! The other monkeys made him their king and called him the Monkey King.",
+        "zh": "很久以前，在花果山上，一块神奇的石头裂开了，从里面跳出了一只小猴子。这只猴子可不一般——他能跑、能跳，还能腾云驾雾！其他猴子拥戴他为王，称他为美猴王。",
+        "pinyin": "Hěn jiǔ yǐ qián, zài huā guǒ shān shàng, yī kuài shén qí de shí tou liè kāi le, cóng lǐ miàn tiào chū le yī zhī xiǎo hóu zi. Zhè zhī hóu zi kě bù yī bān — tā néng pǎo, néng tiào, hái néng téng yún jiù wù! Qí tā hóu zi yōng dài tā wéi wáng, chēng tā wéi Měi Hóu Wáng."
+      },
+      "image": "page1.jpg"
+    },
+    {
+      "id": 2,
+      "title": {
+        "en": "Learning Magic Skills",
+        "zh": "拜师学艺",
+        "pinyin": "Bài shī xué yì"
+      },
+      "content": {
+        "en": "The Monkey King wanted to learn magic. He traveled across the sea to find a wise teacher. After many years of hard work, he learned 72 amazing transformations! He could change into anything — a bird, a fish, or even a tree!",
+        "zh": "美猴王想学本领。他漂洋过海，去寻找一位智慧的老师。经过多年的刻苦学习，他学会了七十二变！他能变成任何东西——一只鸟、一条鱼，甚至一棵树！",
+        "pinyin": "Měi Hóu Wáng xiǎng xué běn lǐng. Tā piāo yáng guò hǎi, qù xún zhǎo yī wèi zhì huì de lǎo shī. Jīng guò duō nián de kè kǔ xué xí, tā xué huì le qī shí èr biàn! Tā néng biàn chéng rèn hé dōng xī — yī zhī niǎo, yī tiáo yú, shèn zhì yī kē shù!"
+      },
+      "image": "page2.jpg"
+    },
+    {
+      "id": 3,
+      "title": {
+        "en": "The Golden Cudgel",
+        "zh": "如意金箍棒",
+        "pinyin": "Rú Yì Jīn Gū Bàng"
+      },
+      "content": {
+        "en": "The Monkey King found a magical iron staff at the Dragon King's palace. It could grow as tall as a mountain or shrink smaller than a needle! He called it the Golden Cudgel and used it to protect his monkey friends.",
+        "zh": "美猴王在龙王的宫殿里找到了一根神奇的铁棒。它能变得像山一样高，也能变得比针还小！他给它取名叫如意金箍棒，用它来保护猴子朋友们。",
+        "pinyin": "Měi Hóu Wáng zài lóng wáng de gōng diàn lǐ zhǎo dào le yī gēn shén qí de tiě bàng. Tā néng biàn de xiàng shān yī yàng gāo, yě néng biàn de bǐ zhēn hái xiǎo! Tā gěi tā qǔ míng jiào Rú Yì Jīn Gū Bàng, yòng tā lái bǎo hù hóu zi péng yǒu men."
+      },
+      "image": "page3.jpg"
+    },
+    {
+      "id": 4,
+      "title": {
+        "en": "The Buddha's Challenge",
+        "zh": "如来佛祖的挑战",
+        "pinyin": "Rú Lái Fó Zǔ de Tiǎo Zhàn"
+      },
+      "content": {
+        "en": "The Monkey King was very proud. He even challenged the Jade Emperor! The Buddha himself came down from heaven. He made a bet with the Monkey King: 'If you can jump out of my hand, you can be the ruler of heaven!' But the Monkey King couldn't do it!",
+        "zh": "美猴王非常骄傲。他甚至挑战玉皇大帝！如来佛祖亲自从天上下来。他和美猴王打赌：'如果你能跳出我的手掌，你就可以做天庭之主！'但是美猴王做不到！",
+        "pinyin": "Měi Hóu Wáng fēi cháng jiāo'ào. Tā shèn zhì tiǎo zhàn Yù Huáng Dà Dì! Rú Lái Fó Zǔ qīn zì cóng tiān shàng xià lái. Tā hé Měi Hóu Wáng dǎ dǔ: 'Rú guǒ nǐ néng tiào chū wǒ de shǒu zhǎng, nǐ jiù kě yǐ zuò tiān tíng zhī zhǔ!' Dàn shì Měi Hóu Wáng zuò bù dào!"
+      },
+      "image": "page4.jpg"
+    },
+    {
+      "id": 5,
+      "title": {
+        "en": "Under the Mountain",
+        "zh": "五行山下",
+        "pinyin": "Wǔ Xíng Shān Xià"
+      },
+      "content": {
+        "en": "The Buddha was too powerful! He turned his hand into a huge mountain and trapped the Monkey King underneath for 500 years. The poor monkey waited and waited, hoping someone would come to set him free.",
+        "zh": "如来佛祖太厉害了！他把手掌变成一座大山，把美猴王压在山下五百年。可怜的猴子等啊等，希望有人来救他。",
+        "pinyin": "Rú Lái Fó Zǔ tài lì hai le! Tā bǎ shǒu zhǎng biàn chéng yī zuò dà shān, bǎ Měi Hóu Wáng yā zài shān xià wǔ bǎi nián. Kě lián de hóu zi děng a děng, xī wàng yǒu rén lái jiù tā."
+      },
+      "image": "page5.jpg"
+    },
+    {
+      "id": 6,
+      "title": {
+        "en": "A New Friend: Sandy",
+        "zh": "新朋友：沙悟净",
+        "pinyin": "Xīn Péng Yǒu: Shā Wù Jìng"
+      },
+      "content": {
+        "en": "After being freed, the Monkey King met a kind monk named Tang Sanzang. Together they met Sandy, a strong giant who lived by the river. Sandy joined their team and carried all their heavy bags.",
+        "zh": "被解救后，美猴王遇到了一位善良的和尚唐三藏。他们一起遇到了沙悟净，一个住在河边的强壮巨人。沙悟净加入了他们的队伍，负责挑所有的重担。",
+        "pinyin": "Bèi jiě jiù hòu, Měi Hóu Wáng yù dào le yī wèi shàn liáng de hé shàng Táng Sān Zàng. Tā men yī qǐ yù dào le Shā Wù Jìng, yī gè zhù zài hé biān de qiáng zhuàng jù rén. Shā Wù Jìng jiā rù le tā men de duì wu, fù zé tiāo suǒ yǒu de zhòng dàn."
+      },
+      "image": "page6.jpg"
+    },
+    {
+      "id": 7,
+      "title": {
+        "en": "Pigsy Joins the Journey",
+        "zh": "猪八戒加入取经队伍",
+        "pinyin": "Zhū Bā Jiè jiā rù qǔ jīng duì wǔ"
+      },
+      "content": {
+        "en": "Next, they met Pigsy, who was once a heavenly marshal but got turned into a pig! He loved to eat and sleep, but he was brave when his friends needed help. Now the team was complete!",
+        "zh": "接着，他们遇到了猪八戒，他曾经是天蓬元帅，但被变成了猪！他喜欢吃和睡，但当朋友需要帮助时，他很勇敢。现在队伍齐了！",
+        "pinyin": "Jiē zhe, tā men yù dào le Zhū Bā Jiè, tā céng jīng shì Tiān Péng Yuán Shuài, dàn bèi biàn chéng le zhū! Tā xǐ huān chī hé shuì, dàn dāng péng yǒu xū yào bāng zhù shí, tā hěn yǒng gǎn. Xiàn zài duì wǔ qí le!"
+      },
+      "image": "page7.jpg"
+    },
+    {
+      "id": 8,
+      "title": {
+        "en": "Facing the White Bone Demon",
+        "zh": "三打白骨精",
+        "pinyin": "Sān Dǎ Bái Gǔ Jīng"
+      },
+      "content": {
+        "en": "The journey was full of dangers! A tricky demon called the White Bone Demon tried to trick them three times. Each time, she changed into a different person. But the Monkey King could see through her tricks and defeated her!",
+        "zh": "取经路上充满了危险！一个叫白骨精的狡猾妖怪三次试图欺骗他们。每次她都变成不同的人。但美猴王识破了她的诡计，打败了她！",
+        "pinyin": "Qǔ jīng lù shàng chōng mǎn le wēi xiǎn! Yī gè jiào Bái Gǔ Jīng de jiǎo huá yāo guài sān cì shì tú qī piàn tā men. Měi cì tā dōu biàn chéng bù tóng de rén. Dàn Měi Hóu Wáng shí pò le tā de guǐ jì, dǎ bài le tā!"
+      },
+      "image": "page8.jpg"
+    },
+    {
+      "id": 9,
+      "title": {
+        "en": "The Fire Mountain",
+        "zh": "火焰山",
+        "pinyin": "Huǒ Yàn Shān"
+      },
+      "content": {
+        "en": "To reach the west, they had to cross the Fire Mountain! It was so hot that nothing could grow there. The Monkey King had to borrow a special fan from Princess Iron Fan to put out the flames and let them pass.",
+        "zh": "要去西天，他们必须经过火焰山！那里太热了，什么都长不出来。美猴王不得不向铁扇公主借一把特殊的扇子，扇灭火焰才能通过。",
+        "pinyin": "Yào qù xī tiān, tā men bì xū jīng guò Huǒ Yàn Shān! Nà lǐ tài rè le, shén me dōu zhǎng bù chū lái. Měi Hóu Wáng bù dé bù xiàng Tiě Shàn Gōng Zhǔ jiè yī bǎ tè shū de shàn zi, shān miè huǒ yàn cái néng tōng guò."
+      },
+      "image": "page9.jpg"
+    },
+    {
+      "id": 10,
+      "title": {
+        "en": "Reaching the West",
+        "zh": "到达西天",
+        "pinyin": "Dào Dá Xī Tiān"
+      },
+      "content": {
+        "en": "After many adventures, the team finally reached the West! They got the holy scriptures and brought them back to China. The Buddha was so pleased that he rewarded each of them: The Monkey King became a Buddha, and his friends became Arhats. They lived happily ever after!",
+        "zh": "经过许多冒险，队伍终于到达了西天！他们取得了真经，带回了中国。佛祖很高兴，奖赏了他们每个人：美猴王成了佛，他的朋友们成了罗汉。从此他们过着幸福的生活！",
+        "pinyin": "Jīng guò xǔ duō mào xiǎn, duì wǔ zhōng yú dào dá le xī tiān! Tā men qǔ dé le zhēn jīng, dài huí le zhōng guó. Fó zǔ hěn gāo xìng, jiǎng shàng le tā men měi gè rén: Měi Hóu Wáng chéng le fó, tā de péng yǒu men chéng le luó hàn. Cóng cǐ tā men guò zhe xìng fú de shēng huó!"
+      },
+      "image": "page10.jpg"
+    }
+  ]
+}

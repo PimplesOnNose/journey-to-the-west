@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey to the West | 西游记</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header with traditional Chinese design -->
+        <header class="header">
+            <div class="cloud-decoration left"></div>
+            <h1 class="title">
+                <span class="title-en">Journey to the West</span>
+                <span class="title-zh">西游记</span>
+            </h1>
+            <div class="cloud-decoration right"></div>
+        </header>
+
+        <!-- Language Toggle -->
+        <div class="language-toggle">
+            <button id="langEn" class="lang-btn active">English</button>
+            <button id="langZh" class="lang-btn">中文</button>
+        </div>
+
+        <!-- Main Story Area -->
+        <main class="story-area">
+            <!-- Page Navigation -->
+            <button id="prevBtn" class="nav-btn prev" aria-label="Previous page">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+            </button>
+
+            <!-- Story Content -->
+            <div class="story-content">
+                <div class="page-indicator">
+                    <span id="currentPage">1</span> / <span id="totalPages">10</span>
+                </div>
+                
+                <div class="illustration-container">
+                    <img id="storyImage" src="images/page1.jpg" alt="Story illustration" class="story-image">
+                    <div class="illustration-frame"></div>
+                </div>
+
+                <div class="text-container">
+                    <h2 id="storyTitle" class="story-title">The Monkey King is Born</h2>
+                    <div id="pinyinContainer" class="pinyin-container" style="display: none;">
+                        <p id="storyPinyin" class="story-pinyin">Měi Hóu Wáng Chū Shì</p>
+                    </div>
+                    <p id="storyText" class="story-text">Long ago, on the Mountain of Flowers and Fruit, a magical stone cracked open and out jumped a little monkey.</p>
+                </div>
+            </div>
+
+            <button id="nextBtn" class="nav-btn next" aria-label="Next page">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </button>
+        </main>
+
+        <!-- Audio Controls -->
+        <div class="audio-controls">
+            <div class="audio-main">
+                <button id="playBtn" class="audio-btn play" aria-label="Play audio">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </button>
+                <button id="autoPlayBtn" class="audio-btn auto-play" aria-label="Toggle auto play">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v20M2 12h20"/>
+                    </svg>
+                    <span class="auto-play-text">Auto</span>
+                </button>
+            </div>
+            <div class="audio-progress">
+                <div id="progressBar" class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <div class="audio-time">
+                    <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="decorative-elements">
+            <div class="bamboo-left"></div>
+            <div class="bamboo-right"></div>
+            <div class="cloud-bottom"></div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
