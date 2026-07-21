@@ -489,6 +489,29 @@ body::before {
     background: radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
 }
 
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    color: var(--ink-black);
+    opacity: 0.7;
+}
+
+.footer a {
+    color: var(--vermillion);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.footer a:hover {
+    color: #a52d1a;
+    text-decoration: underline;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .title-en {
