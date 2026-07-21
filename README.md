@@ -113,4 +113,8 @@ python3 generate_audio.py
 
 ## License
 
-This project is created for educational purposes. The story content is based on the public domain Chinese folktale "Journey to the West".
+MIT License. The story content is based on the public domain Chinese folktale "Journey to the West".
+
+## Credits
+
+Made with [Pi](https://pi.dev) & [Xiaomi Mimo](https://mimo.mi.com/)
