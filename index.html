@@ -3,110 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Journey to the West | 西游记</title>
+    <title>西游记 — Journey to the West</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+SC:wght@300;400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <!-- Header with traditional Chinese design -->
-        <header class="header">
-            <div class="cloud-decoration left"></div>
-            <h1 class="title">
-                <span class="title-en">Journey to the West</span>
-                <span class="title-zh">西游记</span>
-            </h1>
-            <div class="cloud-decoration right"></div>
-        </header>
+    <!-- Atmospheric layers -->
+    <div class="atmosphere">
+        <div class="mist mist-1"></div>
+        <div class="mist mist-2"></div>
+        <div class="mist mist-3"></div>
+    </div>
 
-        <!-- Language Toggle -->
-        <div class="language-toggle">
-            <button id="langEn" class="lang-btn active">English</button>
-            <button id="langZh" class="lang-btn">中文</button>
+    <!-- Main container -->
+    <main class="canvas">
+        <!-- Illustration layer -->
+        <div class="illustration-layer">
+            <img id="storyImage" src="images/page1.jpg" alt="" class="illustration">
+            <div class="illustration-vignette"></div>
         </div>
 
-        <!-- Main Story Area -->
-        <main class="story-area">
-            <!-- Page Navigation -->
-            <button id="prevBtn" class="nav-btn prev" aria-label="Previous page">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 18l-6-6 6-6"/>
+        <!-- Story scroll -->
+        <div class="scroll-container">
+            <div class="scroll">
+                <div class="scroll-edge scroll-edge-top"></div>
+                <div class="scroll-content">
+                    <!-- Page indicator -->
+                    <div class="page-mark">
+                        <span class="page-mark-number" id="currentPage">1</span>
+                        <span class="page-mark-divider">·</span>
+                        <span class="page-mark-total">10</span>
+                    </div>
+
+                    <!-- Title -->
+                    <header class="story-header">
+                        <h1 class="story-title" id="storyTitle">The Monkey King is Born</h1>
+                        <p class="story-pinyin" id="storyTitlePinyin">Měi Hóu Wáng Chū Shì</p>
+                    </header>
+
+                    <!-- Decorative divider -->
+                    <div class="divider">
+                        <span class="divider-ornament">❋</span>
+                    </div>
+
+                    <!-- Content pinyin -->
+                    <div class="content-pinyin" id="contentPinyinContainer">
+                        <p id="storyContentPinyin"></p>
+                    </div>
+
+                    <!-- Story text -->
+                    <article class="story-body">
+                        <p id="storyText" class="story-paragraph">Long ago, on the Mountain of Flowers and Fruit, a magical stone cracked open and out jumped a little monkey.</p>
+                    </article>
+                </div>
+                <div class="scroll-edge scroll-edge-bottom"></div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="navigation">
+            <button id="prevBtn" class="nav-arrow nav-prev" aria-label="Previous" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M15 19l-7-7 7-7"/>
                 </svg>
             </button>
+            <button id="nextBtn" class="nav-arrow nav-next" aria-label="Next">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </nav>
 
-            <!-- Story Content -->
-            <div class="story-content">
-                <div class="page-indicator">
-                    <span id="currentPage">1</span> / <span id="totalPages">10</span>
-                </div>
-                
-                <div class="illustration-container">
-                    <img id="storyImage" src="images/page1.jpg" alt="Story illustration" class="story-image">
-                    <div class="illustration-frame"></div>
-                </div>
-
-                <div class="text-container">
-                    <h2 id="storyTitle" class="story-title">The Monkey King is Born</h2>
-                    <div id="titlePinyinContainer" class="pinyin-container" style="display: none;">
-                        <p id="storyTitlePinyin" class="story-pinyin">Měi Hóu Wáng Chū Shì</p>
-                    </div>
-                    <div id="contentPinyinContainer" class="content-pinyin-container" style="display: none;">
-                        <p id="storyContentPinyin" class="content-pinyin">Hěn jiǔ yǐ qián, zài huā guǒ shān shàng...</p>
-                    </div>
-                    <p id="storyText" class="story-text">Long ago, on the Mountain of Flowers and Fruit, a magical stone cracked open and out jumped a little monkey.</p>
-                </div>
+        <!-- Audio & Language controls -->
+        <div class="controls">
+            <!-- Language switch -->
+            <div class="lang-switch">
+                <button id="langEn" class="lang-btn active" data-lang="en">EN</button>
+                <button id="langZh" class="lang-btn" data-lang="zh">中文</button>
             </div>
 
-            <button id="nextBtn" class="nav-btn next" aria-label="Next page">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 18l6-6-6-6"/>
-                </svg>
-            </button>
-        </main>
-
-        <!-- Audio Controls -->
-        <div class="audio-controls">
-            <div class="audio-main">
-                <button id="playBtn" class="audio-btn play" aria-label="Play audio">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
+            <!-- Audio controls -->
+            <div class="audio-controls">
+                <button id="playBtn" class="play-btn" aria-label="Play">
+                    <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M8 5v14l11-7z"/>
                     </svg>
-                </button>
-                <button id="autoPlayBtn" class="audio-btn auto-play" aria-label="Toggle auto play">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2v20M2 12h20"/>
+                    <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
                     </svg>
-                    <span class="auto-play-text">Auto</span>
+                </button>
+                <div class="audio-progress">
+                    <div class="progress-track">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+                <button id="autoPlayBtn" class="auto-btn" aria-label="Auto play">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M5 3l14 9-14 9V3z"/>
+                        <path d="M19 3v18"/>
+                    </svg>
                 </button>
             </div>
-            <div class="audio-progress">
-                <div id="progressBar" class="progress-bar">
-                    <div id="progressFill" class="progress-fill"></div>
-                </div>
-                <div class="audio-time">
-                    <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
-                </div>
-            </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-decoration"></div>
-            <p class="footer-text">
-                <span class="footer-seal">印</span>
-                Crafted with <a href="https://pi.dev" target="_blank" rel="noopener" class="footer-link">Pi</a> 
-                & <a href="https://mimo.mi.com/" target="_blank" rel="noopener" class="footer-link">Mimo</a>
-            </p>
-            <div class="footer-decoration"></div>
+        <!-- Credits -->
+        <footer class="credits">
+            <span> crafted with </span>
+            <a href="https://pi.dev" target="_blank" rel="noopener">Pi</a>
+            <span class="credits-dot">·</span>
+            <a href="https://mimo.mi.com/" target="_blank" rel="noopener">Mimo</a>
         </footer>
-
-        <!-- Decorative Elements -->
-        <div class="decorative-elements">
-            <div class="bamboo-left"></div>
-            <div class="bamboo-right"></div>
-            <div class="cloud-bottom"></div>
-        </div>
-    </div>
+    </main>
 
     <script src="js/app.js"></script>
 </body>

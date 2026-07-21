@@ -1,146 +1,227 @@
-// Journey to the West - Interactive Story App
+/**
+ * 西游记 — Journey to the West
+ * An interactive story experience
+ */
+
 class StoryApp {
     constructor() {
         this.currentPage = 1;
         this.totalPages = 10;
-        this.currentLang = 'en'; // 'en' or 'zh'
+        this.currentLang = 'en';
+        this.storyData = null;
         this.audio = null;
         this.isPlaying = false;
         this.isAutoPlay = false;
-        this.storyData = null;
+        this.isTransitioning = false;
+        
+        this.elements = {
+            image: document.getElementById('storyImage'),
+            title: document.getElementById('storyTitle'),
+            titlePinyin: document.getElementById('storyTitlePinyin'),
+            contentPinyin: document.getElementById('storyContentPinyin'),
+            contentPinyinContainer: document.getElementById('contentPinyinContainer'),
+            text: document.getElementById('storyText'),
+            currentPage: document.getElementById('currentPage'),
+            prevBtn: document.getElementById('prevBtn'),
+            nextBtn: document.getElementById('nextBtn'),
+            playBtn: document.getElementById('playBtn'),
+            autoBtn: document.getElementById('autoPlayBtn'),
+            progressFill: document.getElementById('progressFill'),
+            illustrationLayer: document.querySelector('.illustration-layer'),
+            scrollContent: document.querySelector('.scroll-content'),
+            iconPlay: document.querySelector('.icon-play'),
+            iconPause: document.querySelector('.icon-pause')
+        };
         
         this.init();
     }
     
     async init() {
-        await this.loadStoryData();
-        this.setupEventListeners();
-        this.updatePage();
+        await this.loadStory();
         this.setupAudio();
+        this.bindEvents();
+        this.updateView();
     }
     
-    async loadStoryData() {
+    async loadStory() {
         try {
             const response = await fetch('story.json');
             this.storyData = await response.json();
-        } catch (error) {
-            console.error('Error loading story data:', error);
-            // Fallback data if JSON fails to load
-            this.storyData = {
-                title: {
-                    en: "Journey to the West",
-                    zh: "西游记",
-                    pinyin: "Xī Yóu Jì"
-                },
-                pages: []
-            };
+        } catch (err) {
+            console.error('Failed to load story:', err);
         }
-    }
-    
-    setupEventListeners() {
-        // Navigation buttons
-        document.getElementById('prevBtn').addEventListener('click', () => this.prevPage());
-        document.getElementById('nextBtn').addEventListener('click', () => this.nextPage());
-        
-        // Language toggle
-        document.getElementById('langEn').addEventListener('click', () => this.setLanguage('en'));
-        document.getElementById('langZh').addEventListener('click', () => this.setLanguage('zh'));
-        
-        // Audio controls
-        document.getElementById('playBtn').addEventListener('click', () => this.togglePlay());
-        document.getElementById('autoPlayBtn').addEventListener('click', () => this.toggleAutoPlay());
-        
-        // Progress bar click
-        document.querySelector('.progress-bar').addEventListener('click', (e) => this.seekAudio(e));
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => this.handleKeyboard(e));
     }
     
     setupAudio() {
         this.audio = new Audio();
-        this.audio.addEventListener('timeupdate', () => this.updateProgress());
+        this.audio.addEventListener('timeupdate', () => this.onTimeUpdate());
         this.audio.addEventListener('ended', () => this.onAudioEnd());
-        this.audio.addEventListener('loadedmetadata', () => this.updateDuration());
     }
     
-    updatePage() {
-        if (!this.storyData || !this.storyData.pages.length) return;
+    bindEvents() {
+        // Navigation
+        this.elements.prevBtn.addEventListener('click', () => this.prev());
+        this.elements.nextBtn.addEventListener('click', () => this.next());
+        
+        // Language
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => this.setLang(btn.dataset.lang));
+        });
+        
+        // Audio
+        this.elements.playBtn.addEventListener('click', () => this.togglePlay());
+        this.elements.autoBtn.addEventListener('click', () => this.toggleAuto());
+        
+        // Progress seek
+        document.querySelector('.progress-track').addEventListener('click', (e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            this.audio.currentTime = percent * this.audio.duration;
+        });
+        
+        // Keyboard
+        document.addEventListener('keydown', (e) => this.onKeydown(e));
+        
+        // Touch swipe
+        this.setupSwipe();
+    }
+    
+    setupSwipe() {
+        let startX = 0;
+        let startY = 0;
+        
+        this.elements.scrollContent.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        }, { passive: true });
+        
+        this.elements.scrollContent.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - startX;
+            const dy = e.changedTouches[0].clientY - startY;
+            
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+                if (dx > 0) this.prev();
+                else this.next();
+            }
+        }, { passive: true });
+    }
+    
+    onKeydown(e) {
+        switch (e.key) {
+            case 'ArrowLeft':
+            case 'ArrowUp':
+                e.preventDefault();
+                this.prev();
+                break;
+            case 'ArrowRight':
+            case 'ArrowDown':
+                e.preventDefault();
+                this.next();
+                break;
+            case ' ':
+                e.preventDefault();
+                this.togglePlay();
+                break;
+        }
+    }
+    
+    // Navigation
+    
+    prev() {
+        if (this.currentPage > 1 && !this.isTransitioning) {
+            this.goTo(this.currentPage - 1);
+        }
+    }
+    
+    next() {
+        if (this.currentPage < this.totalPages && !this.isTransitioning) {
+            this.goTo(this.currentPage + 1);
+        }
+    }
+    
+    goTo(page) {
+        if (page === this.currentPage || this.isTransitioning) return;
+        
+        this.isTransitioning = true;
+        this.stopAudio();
+        
+        // Animate out
+        this.elements.scrollContent.classList.add('transitioning');
+        this.elements.illustrationLayer.classList.add('crossfading');
+        
+        setTimeout(() => {
+            this.currentPage = page;
+            this.updateView();
+            
+            // Animate in
+            setTimeout(() => {
+                this.elements.scrollContent.classList.remove('transitioning');
+                this.elements.illustrationLayer.classList.remove('crossfading');
+                this.isTransitioning = false;
+            }, 100);
+        }, 300);
+    }
+    
+    // View updates
+    
+    updateView() {
+        if (!this.storyData) return;
         
         const page = this.storyData.pages[this.currentPage - 1];
         
         // Update image
-        document.getElementById('storyImage').src = `images/page${this.currentPage}.jpg`;
-        document.getElementById('storyImage').alt = page.title[this.currentLang];
-        
-        // Update title
-        document.getElementById('storyTitle').textContent = page.title[this.currentLang];
-        
-        // Update pinyin (only for Chinese)
-        if (this.currentLang === 'zh') {
-            // Show title pinyin
-            document.getElementById('titlePinyinContainer').style.display = 'block';
-            document.getElementById('storyTitlePinyin').textContent = page.title.pinyin;
-            
-            // Show content pinyin
-            document.getElementById('contentPinyinContainer').style.display = 'block';
-            document.getElementById('storyContentPinyin').textContent = page.content.pinyin;
-        } else {
-            document.getElementById('titlePinyinContainer').style.display = 'none';
-            document.getElementById('contentPinyinContainer').style.display = 'none';
-        }
-        
-        // Update text
-        document.getElementById('storyText').textContent = page.content[this.currentLang];
+        this.elements.image.src = `images/page${this.currentPage}.jpg`;
         
         // Update page indicator
-        document.getElementById('currentPage').textContent = this.currentPage;
+        this.elements.currentPage.textContent = this.currentPage;
         
-        // Update navigation buttons
-        document.getElementById('prevBtn').style.opacity = this.currentPage === 1 ? '0.5' : '1';
-        document.getElementById('nextBtn').style.opacity = this.currentPage === this.totalPages ? '0.5' : '1';
+        // Update navigation state
+        this.elements.prevBtn.disabled = this.currentPage === 1;
+        this.elements.nextBtn.disabled = this.currentPage === this.totalPages;
         
-        // Load audio for current page
+        // Update content based on language
+        if (this.currentLang === 'en') {
+            this.elements.title.textContent = page.title.en;
+            this.elements.text.textContent = page.content.en;
+            this.elements.titlePinyin.style.display = 'none';
+            this.elements.contentPinyinContainer.style.display = 'none';
+        } else {
+            this.elements.title.textContent = page.title.zh;
+            this.elements.text.textContent = page.content.zh;
+            this.elements.titlePinyin.textContent = page.title.pinyin;
+            this.elements.titlePinyin.style.display = 'block';
+            this.elements.contentPinyin.textContent = page.content.pinyin;
+            this.elements.contentPinyinContainer.style.display = 'block';
+        }
+        
+        // Load audio
         this.loadAudio();
         
-        // Animate content
-        this.animateContent();
+        // Scroll to top
+        this.elements.scrollContent.scrollTop = 0;
     }
     
-    animateContent() {
-        const content = document.querySelector('.story-content');
-        content.style.animation = 'none';
-        content.offsetHeight; // Trigger reflow
-        content.style.animation = 'fadeIn 0.6s ease-out';
-    }
+    // Language
     
-    loadAudio() {
-        if (!this.audio) return;
+    setLang(lang) {
+        if (lang === this.currentLang) return;
         
-        const audioFile = `audio/page${this.currentPage}_${this.currentLang}.mp3`;
-        this.audio.src = audioFile;
-        this.audio.load();
-        
-        // Reset progress
-        document.getElementById('progressFill').style.width = '0%';
-        document.getElementById('currentTime').textContent = '0:00';
-        document.getElementById('totalTime').textContent = '0:00';
-    }
-    
-    setLanguage(lang) {
         this.currentLang = lang;
         
-        // Update language buttons
-        document.getElementById('langEn').classList.toggle('active', lang === 'en');
-        document.getElementById('langZh').classList.toggle('active', lang === 'zh');
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
         
-        // Update page with new language
-        this.updatePage();
-        
-        // Stop audio if playing
-        if (this.isPlaying) {
-            this.stopAudio();
-        }
+        this.updateView();
+    }
+    
+    // Audio
+    
+    loadAudio() {
+        const src = `audio/page${this.currentPage}_${this.currentLang}.mp3`;
+        this.audio.src = src;
+        this.audio.load();
+        this.elements.progressFill.style.width = '0%';
     }
     
     togglePlay() {
@@ -152,130 +233,51 @@ class StoryApp {
     }
     
     playAudio() {
-        if (!this.audio) return;
-        
         this.audio.play().then(() => {
             this.isPlaying = true;
-            this.updatePlayButton();
-        }).catch(error => {
-            console.error('Error playing audio:', error);
-        });
+            this.updatePlayIcon();
+        }).catch(console.error);
     }
     
     stopAudio() {
-        if (!this.audio) return;
-        
         this.audio.pause();
         this.audio.currentTime = 0;
         this.isPlaying = false;
-        this.updatePlayButton();
+        this.updatePlayIcon();
+        this.elements.progressFill.style.width = '0%';
     }
     
-    updatePlayButton() {
-        const playBtn = document.getElementById('playBtn');
-        if (this.isPlaying) {
-            playBtn.innerHTML = `
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                </svg>
-            `;
-        } else {
-            playBtn.innerHTML = `
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
-            `;
-        }
+    updatePlayIcon() {
+        this.elements.iconPlay.style.display = this.isPlaying ? 'none' : 'block';
+        this.elements.iconPause.style.display = this.isPlaying ? 'block' : 'none';
     }
     
-    toggleAutoPlay() {
+    toggleAuto() {
         this.isAutoPlay = !this.isAutoPlay;
-        const autoPlayBtn = document.getElementById('autoPlayBtn');
-        autoPlayBtn.classList.toggle('active', this.isAutoPlay);
+        this.elements.autoBtn.classList.toggle('active', this.isAutoPlay);
+    }
+    
+    onTimeUpdate() {
+        if (!this.audio.duration) return;
+        const percent = (this.audio.currentTime / this.audio.duration) * 100;
+        this.elements.progressFill.style.width = `${percent}%`;
     }
     
     onAudioEnd() {
         this.isPlaying = false;
-        this.updatePlayButton();
+        this.updatePlayIcon();
+        this.elements.progressFill.style.width = '0%';
         
-        // Auto play next page if enabled
         if (this.isAutoPlay && this.currentPage < this.totalPages) {
             setTimeout(() => {
-                this.nextPage();
-                setTimeout(() => this.playAudio(), 500);
-            }, 1000);
-        }
-    }
-    
-    updateProgress() {
-        if (!this.audio) return;
-        
-        const progress = (this.audio.currentTime / this.audio.duration) * 100;
-        document.getElementById('progressFill').style.width = `${progress}%`;
-        document.getElementById('currentTime').textContent = this.formatTime(this.audio.currentTime);
-    }
-    
-    updateDuration() {
-        if (!this.audio) return;
-        
-        document.getElementById('totalTime').textContent = this.formatTime(this.audio.duration);
-    }
-    
-    seekAudio(e) {
-        if (!this.audio) return;
-        
-        const progressBar = e.currentTarget;
-        const clickPosition = e.offsetX / progressBar.offsetWidth;
-        this.audio.currentTime = clickPosition * this.audio.duration;
-    }
-    
-    formatTime(seconds) {
-        if (isNaN(seconds)) return '0:00';
-        
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs.toString().padStart(2, '0')}`;
-    }
-    
-    nextPage() {
-        if (this.currentPage < this.totalPages) {
-            this.currentPage++;
-            this.updatePage();
-        }
-    }
-    
-    prevPage() {
-        if (this.currentPage > 1) {
-            this.currentPage--;
-            this.updatePage();
-        }
-    }
-    
-    handleKeyboard(e) {
-        switch(e.key) {
-            case 'ArrowRight':
-            case 'ArrowDown':
-                e.preventDefault();
-                this.nextPage();
-                break;
-            case 'ArrowLeft':
-            case 'ArrowUp':
-                e.preventDefault();
-                this.prevPage();
-                break;
-            case ' ':
-                e.preventDefault();
-                this.togglePlay();
-                break;
-            case 'Enter':
-                e.preventDefault();
-                this.toggleAutoPlay();
-                break;
+                this.next();
+                setTimeout(() => this.playAudio(), 600);
+            }, 800);
         }
     }
 }
 
-// Initialize app when DOM is loaded
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
     new StoryApp();
 });
