@@ -2,6 +2,8 @@
 
 An interactive web application telling the famous Chinese folktale "Journey to the West" (西游记), designed for primary school children.
 
+**[View Live →](https://pimplesonnose.github.io/journey-to-the-west/)**
+
 ## Features
 
 ### 🎨 Beautiful Chinese Painting Aesthetics
